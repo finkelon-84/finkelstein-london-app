@@ -9,6 +9,8 @@
      id        unique slug, used as a foreign key from itinerary stops
      nameEn    English name, shown with dir="ltr"
      category  "attraction" | "restaurant"
+     foodType  "restaurant" | "cafe" — restaurant places only, used to split
+               the "קרוב אליי" tabs between מסעדות and בתי קפה
      tagHe     short Hebrew description shown under the name
      indoor    true/false — used for rainy-day recommendations
      rating    Google rating (number) — optional, attractions only for now
@@ -28,13 +30,13 @@ export const PLACES = [
   { id: "cgm", nameEn: "Covent Garden Market", category: "attraction", tagHe: "שוק מקורה", indoor: true, rating: 4.5, lat: 51.5117, lng: -0.1240 },
   { id: "onc", nameEn: "One New Change", category: "attraction", tagHe: "קניון נגיש לעגלה", indoor: true, rating: 4.3, lat: 51.5138, lng: -0.0938 },
   { id: "hamleys", nameEn: "Hamleys", category: "attraction", tagHe: "חנות צעצועים", indoor: true, rating: 4.4, lat: 51.5136, lng: -0.1409 },
-  { id: "dishoom", nameEn: "Dishoom Covent Garden", category: "restaurant", tagHe: "מסעדה הודית · ידידותי למשפחות", indoor: true, lat: 51.5121, lng: -0.1257 },
-  { id: "flatwhite", nameEn: "Flat White Soho", category: "restaurant", tagHe: "בית קפה · ישיבה בחוץ", indoor: false, lat: 51.5136, lng: -0.1319 },
-  { id: "pizzaexp", nameEn: "Pizza Express Trafalgar", category: "restaurant", tagHe: "מסעדה איטלקית · כיסא תינוק", indoor: true, lat: 51.5080, lng: -0.1281 },
-  { id: "vacafe", nameEn: "V&A Café", category: "restaurant", tagHe: "קפה/ארוחה קלה בתוך המוזיאון · ליד הנטורל היסטורי", indoor: true, lat: 51.4966, lng: -0.1722 },
-  { id: "franco", nameEn: "Franco Manca", category: "restaurant", tagHe: "פיצה איטלקית", indoor: true, lat: 51.5117, lng: -0.1350 },
+  { id: "dishoom", nameEn: "Dishoom Covent Garden", category: "restaurant", foodType: "restaurant", tagHe: "מסעדה הודית · ידידותי למשפחות", indoor: true, lat: 51.5121, lng: -0.1257 },
+  { id: "flatwhite", nameEn: "Flat White Soho", category: "restaurant", foodType: "cafe", tagHe: "בית קפה · ישיבה בחוץ", indoor: false, lat: 51.5136, lng: -0.1319 },
+  { id: "pizzaexp", nameEn: "Pizza Express Trafalgar", category: "restaurant", foodType: "restaurant", tagHe: "מסעדה איטלקית · כיסא תינוק", indoor: true, lat: 51.5080, lng: -0.1281 },
+  { id: "vacafe", nameEn: "V&A Café", category: "restaurant", foodType: "cafe", tagHe: "קפה/ארוחה קלה בתוך המוזיאון · ליד הנטורל היסטורי", indoor: true, lat: 51.4966, lng: -0.1722 },
+  { id: "franco", nameEn: "Franco Manca", category: "restaurant", foodType: "restaurant", tagHe: "פיצה איטלקית", indoor: true, lat: 51.5117, lng: -0.1350 },
   { id: "bustour", nameEn: "London Bus Tour + Thames River Cruise", category: "attraction", tagHe: "אוטובוס תיירים פתוח + שייט בתמזה", indoor: false, rating: 4.5, lat: 51.5080, lng: -0.1281 },
-  { id: "chinatown", nameEn: "Chinatown London", category: "restaurant", tagHe: "צהריים קלים · נודלס ודמפלינגס", indoor: true, lat: 51.5114, lng: -0.1308 },
+  { id: "chinatown", nameEn: "Chinatown London", category: "restaurant", foodType: "restaurant", tagHe: "צהריים קלים · נודלס ודמפלינגס", indoor: true, lat: 51.5114, lng: -0.1308 },
   { id: "lego", nameEn: "LEGO Store Leicester Square", category: "attraction", tagHe: "חנות צעצועים ענקית", indoor: true, rating: 4.6, lat: 51.5104, lng: -0.1300 },
   { id: "mms", nameEn: "M&M'S World Leicester Square", category: "attraction", tagHe: "חנות ממתקים צבעונית", indoor: true, rating: 4.3, lat: 51.5103, lng: -0.1302 },
   { id: "hsk", nameEn: "High Street Kensington", category: "attraction", tagHe: "קניות ידידותיות לעגלה · Zara, TK Maxx", indoor: true, rating: 4.2, lat: 51.5009, lng: -0.1925 },

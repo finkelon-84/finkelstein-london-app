@@ -135,6 +135,7 @@ html, body { height:100%; }
 .fk-title { font-family:'Secular One',sans-serif; font-size:16px; color:#fff; }
 .fk-tag { font-family:'Secular One',sans-serif; font-size:13px; color:#FFE9C7; margin-top:4px; }
 .fk-content { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; padding:16px 16px calc(96px + env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:14px; }
+.fk-content > * { flex-shrink:0; }
 .fk-section-label { font-family:'Secular One',sans-serif; font-size:12px; color:#1F3A5F; margin-bottom:5px; margin-right:2px; }
 .fk-hourly-row { display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; padding-top:10px; margin-top:10px; border-top:2px dashed #EADFC8; }
 .fk-hourpill { background:#FFE9C7; border:2px solid #1F3A5F; border-radius:12px; padding:6px 9px; text-align:center; font-size:11px; color:#1F3A5F; min-width:46px; flex-shrink:0; font-weight:600; }
@@ -591,7 +592,7 @@ function AddToItineraryModal({ place, itinerary, setItinerary, onClose }) {
 }
 
 function NearMeScreen({ weather, itinerary, setItinerary }) {
-  const [category, setCategory] = useState("attraction");
+  const [filter, setFilter] = useState("attraction");
   const [coords, setCoords] = useState(null);
   const [geoStatus, setGeoStatus] = useState("idle");
   const [manualText, setManualText] = useState("");
@@ -630,10 +631,13 @@ function NearMeScreen({ weather, itinerary, setItinerary }) {
 
   const list = useMemo(() => {
     const base = coords || { lat: 51.5080, lng: -0.1281 };
-    return PLACES.filter((p) => p.category === category)
+    return PLACES.filter((p) => {
+      if (filter === "attraction") return p.category === "attraction";
+      return p.category === "restaurant" && p.foodType === filter;
+    })
       .map((p) => ({ ...p, dist: haversine(base.lat, base.lng, p.lat, p.lng) }))
       .sort((a, b) => a.dist - b.dist);
-  }, [category, coords]);
+  }, [filter, coords]);
 
   return (
     <div className="fk-content">
@@ -652,8 +656,9 @@ function NearMeScreen({ weather, itinerary, setItinerary }) {
       </div>
 
       <div className="fk-toggle">
-        <div className={`fk-toggleopt ${category === "attraction" ? "active" : ""}`} onClick={() => setCategory("attraction")}>אטרקציות</div>
-        <div className={`fk-toggleopt ${category === "restaurant" ? "active" : ""}`} onClick={() => setCategory("restaurant")}>מסעדות ובתי קפה</div>
+        <div className={`fk-toggleopt ${filter === "restaurant" ? "active" : ""}`} onClick={() => setFilter("restaurant")}>מסעדות</div>
+        <div className={`fk-toggleopt ${filter === "cafe" ? "active" : ""}`} onClick={() => setFilter("cafe")}>בתי קפה</div>
+        <div className={`fk-toggleopt ${filter === "attraction" ? "active" : ""}`} onClick={() => setFilter("attraction")}>אטרקציות</div>
       </div>
 
       {list.map((p) => {
