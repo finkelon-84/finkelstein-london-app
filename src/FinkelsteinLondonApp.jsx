@@ -124,8 +124,8 @@ const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&family=Heebo:wght@400;500;600;700&display=swap');
 * { box-sizing: border-box; }
 html, body { height:100%; }
-.fk-root { font-family:'Heebo',sans-serif; direction:rtl; display:flex; justify-content:center; align-items:center; padding:32px 12px; background:#1c2333; min-height:100vh; min-height:100dvh; }
-.fk-phone { width:100%; max-width:420px; height:100vh; height:100dvh; max-height:860px; background:#FFF8ED; background-image:radial-gradient(#EADFC8 1.4px, transparent 1.4px); background-size:16px 16px; border-radius:32px; overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5); display:flex; flex-direction:column; position:relative; border:6px solid #14161c; }
+.fk-root { font-family:'Heebo',sans-serif; direction:rtl; display:flex; justify-content:center; align-items:center; padding:32px 12px; background:#1c2333; min-height:100vh; min-height:100svh; }
+.fk-phone { width:100%; max-width:420px; height:100vh; height:100svh; max-height:860px; background:#FFF8ED; background-image:radial-gradient(#EADFC8 1.4px, transparent 1.4px); background-size:16px 16px; border-radius:32px; overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5); display:flex; flex-direction:column; position:relative; border:6px solid #14161c; }
 @media (max-width: 480px) {
   .fk-root { padding:0; align-items:stretch; }
   .fk-phone { max-width:none; max-height:none; border-radius:0; border:none; box-shadow:none; }
